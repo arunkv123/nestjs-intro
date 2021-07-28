@@ -9,19 +9,19 @@ export class ProductsController {
 
     }
     @Post()
-    addProducts(@Body('title') title: string, @Body('description') description: string, @Body('price') price: number): any {
-        const productId = this.productsService.addProduct(title, description, price);
+    async addProducts(@Body('title') title: string, @Body('description') description: string, @Body('price') price: number) {
+        const productId = await this.productsService.addProduct(title, description, price);
         return { id: productId };
     }
 
     @Get()
-    getAllProducts(): any {
-        return this.productsService.getAllProducts();
+    async getAllProducts() {
+        return await this.productsService.getAllProducts();
     }
 
     @Get(':id')
-    getProduct(@Param('id') productId: string): any {
-        return this.productsService.getProductForId(productId);
+    async getProduct(@Param('id') productId: string) {
+        return await this.productsService.getProductForId(productId);
     }
 
     @Patch(':id')

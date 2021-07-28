@@ -1,4 +1,4 @@
-FROM node:14.17.3-alpine3.9 AS development
+FROM node:14.17-alpine3.12 AS development
 
 WORKDIR /usr/src/app
 
@@ -12,7 +12,7 @@ COPY . .
 
 RUN npm run build
 
-FROM node:14.17.3-alpine3.9 as production
+FROM node:14.17-alpine3.12 as production
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
