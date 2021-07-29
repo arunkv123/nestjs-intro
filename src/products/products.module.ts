@@ -1,5 +1,6 @@
-import { Module } from "@nestjs/common";
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
+import { LogMiddleware } from "src/log.middleware";
 import { ProductSchema } from "./product.model";
 import { ProductsController } from "./products.controller";
 import { ProductsService } from "./products.service";
@@ -9,6 +10,6 @@ import { ProductsService } from "./products.service";
     controllers: [ProductsController],
     providers: [ProductsService]
 })
-export class ProductsModule {
-
+export class ProductsModule{
+   
 }
