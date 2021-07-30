@@ -4,10 +4,10 @@ pipeline {
         stage('build') {
             steps {
                 sh 'npm --version'
-                sh 'sudo docker-compose ps'
-                sh 'sudo docker-compose kill'
-                sh 'sudo docker-compose rm'
-                sh 'sudo docker-compose up --build --force-recreate dev'
+                sh 'docker-compose ps'
+                sh 'docker-compose kill'
+                sh 'docker-compose rm'
+                sh 'docker-compose up --build --force-recreate dev'
             }
             
         }
