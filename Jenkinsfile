@@ -9,6 +9,8 @@ pipeline {
                 sh 'docker-compose rm --stop --force'
                 sh 'docker-compose build --no-cache'
                 sh 'docker-compose up --force-recreate dev'
+                sh 'set -x'
+                sh 'kill $(cat .pidfile)'
             }
             
         }
