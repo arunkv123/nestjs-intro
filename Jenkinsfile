@@ -6,8 +6,9 @@ pipeline {
                 sh 'npm --version'
                 sh 'docker-compose ps'
                 sh 'docker-compose kill'
-                sh 'docker-compose rm'
-                sh 'docker-compose up --build --force-recreate dev'
+                sh 'docker-compose rm --stop --force'
+                sh 'docker-compose build --no-cache'
+                sh 'docker-compose up --force-recreate dev'
             }
             
         }
