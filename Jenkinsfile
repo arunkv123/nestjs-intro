@@ -1,12 +1,13 @@
-pipeline {    
+pipeline {  
+    agent any  
     stages {
         stage('build') {
             steps {
                 sh 'npm --version'
-                sudo docker-compose ps
-                sudo docker-compose kill
-                sudo docker-compose rm
-                sudo docker-compose up --build --force-recreate dev
+                sh 'sudo docker-compose ps'
+                sh 'sudo docker-compose kill'
+                sh 'sudo docker-compose rm'
+                sh 'sudo docker-compose up --build --force-recreate dev'
             }
             post{
                 always{
