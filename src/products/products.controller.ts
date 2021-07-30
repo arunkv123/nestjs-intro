@@ -1,7 +1,10 @@
-import { Body, Controller, Get, Param, Patch, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post } from "@nestjs/common";
+import { ApiBody, ApiTags } from "@nestjs/swagger";
+import { json } from "express";
 import { Product } from "./product.model";
 import { ProductsService } from "./products.service";
 
+@ApiTags('products')
 @Controller('products')
 export class ProductsController {
 
@@ -9,8 +12,9 @@ export class ProductsController {
 
     }
     @Post()
-    async addProducts(@Body('title') title: string, @Body('description') description: string, @Body('price') price: number) {
-        const productId = await this.productsService.addProduct(title, description, price);
+    @ApiBody({ description: 'Product json', type: json, required: true })
+    async addProducts(@Body('') product: Product) {
+        const productId = await this.productsService.addProduct(product.title, product.description, product.price);
         return { id: productId };
     }
 
@@ -25,7 +29,7 @@ export class ProductsController {
     }
 
     @Patch(':id')
-    updateProduct(@Param('id') productId: string, @Body('title') title: string, @Body('description') description: string, @Body('price') price: number): any {
+    updateProduct(@Param('id') productId: string, @Body('title') title: string, @Body('description') description: string, @Body('price', ParseIntPipe) price: number): any {
         this.productsService.updateProduct(productId, title, description, price);
         return 'success';
     }
