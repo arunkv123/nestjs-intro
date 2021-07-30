@@ -9,7 +9,7 @@ services:
             context: .
             target: development
             dockerfile: ./Dockerfile
-        command: npm run start:debug
+        command:  ./node_modules/forever/bin/forever start --minUptime 1000 --spinSleepTime 1000  -c "npm run start:debug" ./
         ports:
             - 3000:3000
             - 9229:9229
