@@ -4,7 +4,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { LogMiddleware } from './log.middleware';
-import { ProductsController } from './products/products.controller';
 import { ProductsModule } from './products/products.module';
 import { UsersModule } from './users/users.module';
 
